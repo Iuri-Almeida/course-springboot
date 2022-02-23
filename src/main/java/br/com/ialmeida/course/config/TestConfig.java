@@ -3,8 +3,10 @@ package br.com.ialmeida.course.config;
 import java.time.Instant;
 import java.util.Arrays;
 
+import br.com.ialmeida.course.entities.Category;
 import br.com.ialmeida.course.entities.Order;
 import br.com.ialmeida.course.entities.enums.OrderStatus;
+import br.com.ialmeida.course.repositories.CategoryRepository;
 import br.com.ialmeida.course.repositories.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,8 +26,17 @@ public class TestConfig implements CommandLineRunner {
 	@Autowired
 	private OrderRepository orderRepository;
 
+	@Autowired
+	private CategoryRepository categoryRepository;
+
 	@Override
 	public void run(String... args) throws Exception {
+
+		Category cat1 = new Category(null, "Electronics");
+		Category cat2 = new Category(null, "Books");
+		Category cat3 = new Category(null, "Computers");
+
+		categoryRepository.saveAll(Arrays.asList(cat1, cat2, cat3));
 
 		User u1 = new User(null, "Maria Brown", "maria@gmail.com", "988888888", "123456");
 		User u2 = new User(null, "Alex Green", "alex@gmail.com", "977777777", "123456");
